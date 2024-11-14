@@ -1,31 +1,44 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class CoinGenerator : MonoBehaviour
 {
-    public GameObject coinPrefab; // Prefab de la moneda a instanciar (la moneda interactuable)
-    public Transform spawnPoint; // Posición en la que aparecerá la copia
+    public GameObject coinPrefab; // Prefab de la moneda que se instanciará al intentar agarrar
+    public Transform spawnPoint; // Posición donde aparecerá la moneda copiada
+    private XRGrabInteractable grabInteractable;
 
     private void Start()
     {
-        // Verificar que el prefab está asignado
-        if (coinPrefab == null)
+        // Obtén el componente XR Grab Interactable en la moneda generadora
+        grabInteractable = GetComponent<XRGrabInteractable>();
+        if (grabInteractable == null)
         {
-            Debug.LogError("No se ha asignado un prefab de moneda.");
+            Debug.LogError("El componente XR Grab Interactable no está presente en la moneda generadora.");
+            return;
         }
+
+        // Asocia el evento para que llame a OnGrabAttempt al intentar agarrar
+        grabInteractable.selectEntered.AddListener(OnGrabAttempt);
     }
 
-    // Este método se ejecutará cuando el jugador intente agarrar la moneda
-    public void OnGrabAttempt()
+    private void OnGrabAttempt(SelectEnterEventArgs args)
     {
-        // Instanciar una copia de la moneda interactuable en la posición indicada
+        // Crea una copia de la moneda en la posición del spawn point
         GameObject newCoin = Instantiate(coinPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        // Hacer la moneda manipulable activando su física
+        // Activa la física en la moneda copiada para que pueda ser interactuable
         Rigidbody rb = newCoin.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.isKinematic = false; // Activa el Rigidbody para que tenga física
-            rb.useGravity = true; // Activa la gravedad, si se necesita
+            rb.isKinematic = false; // Habilita la física en la copia
+            rb.useGravity = true;
+        }
+
+        // Configura el nuevo objeto como interactuable en VR
+        XRGrabInteractable newGrabInteractable = newCoin.GetComponent<XRGrabInteractable>();
+        if (newGrabInteractable != null)
+        {
+            // Puedes personalizar el comportamiento del nuevo XRGrabInteractable aquí si es necesario
         }
     }
 }
