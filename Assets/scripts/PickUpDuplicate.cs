@@ -1,9 +1,19 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PickupDuplicate : MonoBehaviour
 {
     public GameObject objectPrefab; // Prefab del objeto que se va a copiar
     private GameObject duplicateObject;
+    private Collider originalCollider; // Para desactivar el collider del objeto original
+    private XRGrabInteractable originalGrabInteractable; // Para desactivar el XR Grab del original
+
+    void Start()
+    {
+        // Obtén el collider y XR Grab Interactable del objeto original al inicio
+        originalCollider = GetComponent<Collider>();
+        originalGrabInteractable = GetComponent<XRGrabInteractable>();
+    }
 
     void Update()
     {
@@ -27,12 +37,17 @@ public class PickupDuplicate : MonoBehaviour
             rb.useGravity = true;    // Activar gravedad para el objeto duplicado
         }
 
-        // Aquí agregamos la lógica para "agarrar" inmediatamente la copia
-        // Esto depende de cómo manejes los objetos agarrados en tu VR o sistema de agarre:
-        // - Si tienes un script de "agarre" en el jugador o controlador, llama el método desde allí.
-        // - Si usas VR, puedes llamar a un script de "agarre" en el controlador de la mano.
-        
-        // Ejemplo simple: mover el objeto copiado al "agarrarlo"
-        duplicateObject.transform.SetParent(transform); // opcional, asigna el objeto copiado al jugador o controlador
+        // Desactivar el collider y el XR Grab Interactable del objeto original
+        if (originalCollider != null)
+        {
+            originalCollider.enabled = false;
+        }
+        if (originalGrabInteractable != null)
+        {
+            originalGrabInteractable.enabled = false;
+        }
+
+        // Hacer que la copia también tenga el componente XR Grab Interactable
+        duplicateObject.AddComponent<XRGrabInteractable>();
     }
 }
