@@ -597,7 +597,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -723,6 +723,7 @@ MonoBehaviour:
   coinPrefab: {fileID: 578969625920938260, guid: 3253d8e417f3bbc48a0dd3eeb54c5d85,
     type: 3}
   spawnPoint: {fileID: 1483931535}
+  originalCollider: {fileID: 0}
 --- !u!1 &361891363
 GameObject:
   m_ObjectHideFlags: 0
