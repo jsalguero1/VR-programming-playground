@@ -1,42 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; // Necesario para el sistema de entrada
 
 public class CoinDuplicator : MonoBehaviour
 {
     [SerializeField] private GameObject coinPrefab;  // Prefab de la moneda que se generará
     [SerializeField] private Transform spawnPoint;   // Punto donde aparecerá la copia
-    [SerializeField] private Collider originalCollider; // Collider de la moneda original para detectar colisiones
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        // Confirmar que se ha detectado una colisión
-        Debug.Log($"Colisión detectada con: {other.name}");
+        // Verificar si el botón A en el controlador derecho ha sido presionado
+        if (Gamepad.current != null && Gamepad.current.aButton.wasPressedThisFrame)
+        {
+            GenerateCoin();
+        }
+    }
 
-        // Crear una copia de la moneda cuando algo interactúe con ella
+    private void GenerateCoin()
+    {
         if (coinPrefab != null && spawnPoint != null)
         {
-            Debug.Log("Generando copia de la moneda...");
+            // Crear una copia de la moneda
             GameObject coinCopy = Instantiate(coinPrefab, spawnPoint.position, spawnPoint.rotation);
+            Debug.Log("Moneda duplicada.");
 
-            // Activar físicas en la moneda duplicada
+            // Activar físicas en la copia
             var coinRigidbody = coinCopy.GetComponent<Rigidbody>();
             if (coinRigidbody != null)
             {
                 coinRigidbody.isKinematic = false; // Habilitar físicas
-                Debug.Log("Físicas activadas para la copia.");
-            }
-
-            // Opcional: Desactivar el collider del original después de la interacción
-            if (originalCollider != null)
-            {
-                originalCollider.enabled = false;
-                Debug.Log("El collider de la moneda original ha sido desactivado.");
             }
         }
         else
         {
-            Debug.LogError("Prefab o Spawn Point no están configurados correctamente.");
+            Debug.LogError("Prefab o Spawn Point no asignados en el Inspector.");
         }
     }
 }
