@@ -1,51 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class CoinDuplicator : MonoBehaviour
 {
-    [SerializeField] private GameObject coinPrefab; // Prefab de la moneda (debe incluir XRGrabInteractable y Rigidbody)
-    [SerializeField] private Transform spawnPoint;  // Punto donde se creará la moneda duplicada
+    [SerializeField] private GameObject coinPrefab;  // Prefab de la moneda que se generará
+    [SerializeField] private Transform spawnPoint;   // Punto donde aparecerá la copia
+    [SerializeField] private Collider originalCollider; // Collider de la moneda original para detectar colisiones
 
-    private void OnEnable()
+    private void OnTriggerEnter(Collider other)
     {
-        // Asegúrate de que el XRGrabInteractable original esté deshabilitado
-        var grabInteractable = GetComponent<XRGrabInteractable>();
-        if (grabInteractable != null)
+        // Confirmar que se ha detectado una colisión
+        Debug.Log($"Colisión detectada con: {other.name}");
+
+        // Crear una copia de la moneda cuando algo interactúe con ella
+        if (coinPrefab != null && spawnPoint != null)
         {
-            grabInteractable.selectEntered.AddListener(OnGrabAttempt);
+            Debug.Log("Generando copia de la moneda...");
+            GameObject coinCopy = Instantiate(coinPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            // Activar físicas en la moneda duplicada
+            var coinRigidbody = coinCopy.GetComponent<Rigidbody>();
+            if (coinRigidbody != null)
+            {
+                coinRigidbody.isKinematic = false; // Habilitar físicas
+                Debug.Log("Físicas activadas para la copia.");
+            }
+
+            // Opcional: Desactivar el collider del original después de la interacción
+            if (originalCollider != null)
+            {
+                originalCollider.enabled = false;
+                Debug.Log("El collider de la moneda original ha sido desactivado.");
+            }
         }
-    }
-
-    private void OnDisable()
-    {
-        var grabInteractable = GetComponent<XRGrabInteractable>();
-        if (grabInteractable != null)
+        else
         {
-            grabInteractable.selectEntered.RemoveListener(OnGrabAttempt);
-        }
-    }
-
-    private void OnGrabAttempt(SelectEnterEventArgs args)
-    {
-        // Generar una copia de la moneda
-        GameObject coinCopy = Instantiate(coinPrefab, spawnPoint.position, spawnPoint.rotation);
-
-        // Activar físicas para la copia
-        var coinRigidbody = coinCopy.GetComponent<Rigidbody>();
-        if (coinRigidbody != null)
-        {
-            coinRigidbody.isKinematic = false; // Habilitar físicas
-        }
-
-        // Hacer que la copia sea agarrable
-        var grabInteractable = coinCopy.GetComponent<XRGrabInteractable>();
-        if (grabInteractable != null)
-        {
-            // Forzar que el jugador agarre la nueva moneda
-            var interactor = args.interactorObject;
-            grabInteractable.interactionManager.SelectEnter(interactor, grabInteractable);
+            Debug.LogError("Prefab o Spawn Point no están configurados correctamente.");
         }
     }
 }
