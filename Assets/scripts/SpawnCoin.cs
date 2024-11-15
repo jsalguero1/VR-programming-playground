@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class SpawnCoin : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject: coin_asset;
+    public Transform: SpawnPoint;
 
-    // Update is called once per frame
-    void Update()
+    public void Spawn()
     {
-        
-    }
+        Instantiate(coin_asset, SpawnPoint.position, SpawnPoint.rotation);
+    } 
 }
