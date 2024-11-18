@@ -2,10 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class XRTextEditor : MonoBehaviour
+public class XRTextEditorNoLayers : MonoBehaviour
 {
     public XRRayInteractor rayInteractor; // Referencia al XR Ray Interactor
-    public LayerMask coinLayer; // Capa de las monedas para filtrar
+    public float interactionDistance = 5f; // Distancia máxima para interactuar con las monedas
 
     private TMP_Text selectedTextMesh;
 
@@ -14,21 +14,23 @@ public class XRTextEditor : MonoBehaviour
         // Detecta si el rayo está interactuando con un objeto válido
         if (rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
         {
-            // Comprueba si el objeto pertenece a la capa de monedas
-            if (((1 << hit.collider.gameObject.layer) & coinLayer) != 0)
-            {
-                // Busca el hijo llamado "Valor" dentro del objeto golpeado
-                Transform valorChild = hit.collider.transform.Find("Valor");
-                if (valorChild != null)
-                {
-                    selectedTextMesh = valorChild.GetComponent<TMP_Text>();
-                }
+            GameObject hitObject = hit.collider.gameObject;
 
-                // Detecta si se presiona el botón A
-                if (selectedTextMesh != null && Input.GetButtonDown("XRI_Right_A")) // Ajusta la entrada si es necesario
-                {
-                    EditCoinText();
-                }
+            // Comprueba si el objeto golpeado es una moneda buscando el hijo "Valor"
+            Transform valorChild = hitObject.transform.Find("Valor");
+            if (valorChild != null)
+            {
+                selectedTextMesh = valorChild.GetComponent<TMP_Text>();
+            }
+            else
+            {
+                selectedTextMesh = null; // Reinicia si no es una moneda válida
+            }
+
+            // Detecta si se presiona el botón A
+            if (selectedTextMesh != null && Input.GetButtonDown("XRI_Right_A")) // Ajusta la entrada si es necesario
+            {
+                EditCoinText();
             }
         }
         else
