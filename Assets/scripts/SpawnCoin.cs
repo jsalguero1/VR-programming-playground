@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpawnCoin : MonoBehaviour
 {
-    public GameObject: coin_asset;
-    public Transform: SpawnPoint;
+    public GameObject coin_asset;
+    public Transform SpawnPoint;
 
     public void Spawn()
     {
