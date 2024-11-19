@@ -12,7 +12,7 @@ private void Start()
     // Si el TMP no tiene texto inicial, lo asignamos desde el valor actual
     if (Valor.text == "0")
     {
-        Valor.text = valorActual.ToString("F0"); // Por defecto, muestra un entero
+        Valor.text = valorActual.ToString("F2"); // Por defecto, muestra un entero
     }
 
     // Actualizamos el texto para reflejar el valor inicial

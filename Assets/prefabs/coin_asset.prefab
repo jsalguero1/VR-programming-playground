@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Valor: {fileID: 5535764969054354508}
-  valorActual: 2
+  valorActual: 3.66
 --- !u!65 &1952698628946980152
 BoxCollider:
   m_ObjectHideFlags: 0
