@@ -9,19 +9,19 @@ public class MenuManager : MonoBehaviour
     public float valorOperacion = 0f;
 
     // Almacena la operación seleccionada en el Dropdown
-    public string operacionSeleccionada = "+";
+    public string operacionSeleccionada = "Sumar";
 
     private void Awake()
     {
-        // Implementación del Singleton: asegura que haya solo una instancia
+        // Implementación del Singleton
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Opcional: persiste entre escenas
+            DontDestroyOnLoad(gameObject); // Opcional, si deseas que persista entre escenas
         }
         else
         {
-            Destroy(gameObject); // Evita duplicados
+            Destroy(gameObject);
         }
     }
 
@@ -30,7 +30,7 @@ public class MenuManager : MonoBehaviour
     {
         if (float.TryParse(valor, out float resultado))
         {
-            valorOperacion = resultado; // Convierte el texto en número y lo guarda
+            valorOperacion = resultado; // Convierte el texto a un número
         }
         else
         {
