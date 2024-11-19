@@ -2,50 +2,51 @@ using UnityEngine;
 
 public class HammerBehavior : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        // Verificar si el objeto golpeado es una moneda
-        if (other.CompareTag("Coin"))
+        // Verifica si el objeto con el que colisionamos es una moneda
+        if (collision.gameObject.CompareTag("Coin")) // Asegúrate de que las monedas tienen el tag "Coin"
         {
-            CoinBehavior coin = other.GetComponent<CoinBehavior>();
-            if (coin != null)
+            CoinBehavior moneda = collision.gameObject.GetComponent<CoinBehavior>();
+            if (moneda != null)
             {
-                AplicarOperacion(coin);
+                AplicarOperacion(moneda);
             }
         }
     }
 
-    private void AplicarOperacion(CoinBehavior coin)
+    private void AplicarOperacion(CoinBehavior moneda)
     {
-        // Obtener los valores del MenuManager
-        float valorOperacion = MenuManager.Instance.valorOperacion;
-        string operacion = MenuManager.Instance.operacionSeleccionada;
+        float valorMoneda = moneda.valorActual; // Obtiene el valor actual de la moneda
+        float valorOperacion = MenuManager.Instance.valorOperacion; // Valor del menú
+        string operacion = MenuManager.Instance.operacionSeleccionada; // Operación del menú
 
-        // Valor actual de la moneda
-        float valorActual = coin.valorActual;
-        float nuevoValor = valorActual;
+        float nuevoValor = valorMoneda; // Inicializamos con el valor actual de la moneda
 
-        // Aplicar la operación seleccionada
-        switch (operacion)
+        // Comparamos las palabras seleccionadas y aplicamos la operación correspondiente
+        switch (operacion.ToLower()) // Convertimos a minúsculas para evitar problemas de mayúsculas/minúsculas
         {
-            case "Sumar":
-                nuevoValor = valorActual + valorOperacion;
+            case "sumar":
+                nuevoValor = valorMoneda + valorOperacion;
                 break;
-            case "Restar":
-                nuevoValor = valorActual - valorOperacion;
+            case "restar":
+                nuevoValor = valorMoneda - valorOperacion;
                 break;
-            case "Multiplicar":
-                nuevoValor = valorActual * valorOperacion;
+            case "multiplicar":
+                nuevoValor = valorMoneda * valorOperacion;
                 break;
-            case "Dividir":
+            case "dividir":
                 if (valorOperacion != 0)
-                    nuevoValor = valorActual / valorOperacion;
+                    nuevoValor = valorMoneda / valorOperacion;
                 else
-                    Debug.LogWarning("División por cero no permitida.");
+                    Debug.LogWarning("No se puede dividir entre cero.");
+                break;
+            default:
+                Debug.LogWarning($"Operación '{operacion}' no reconocida.");
                 break;
         }
 
-        // Actualizar el valor de la moneda
-        coin.ActualizarValor(nuevoValor);
+        // Actualizamos el valor de la moneda
+        moneda.ActualizarValor(nuevoValor);
     }
 }

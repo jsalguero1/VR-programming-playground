@@ -1,23 +1,19 @@
 using UnityEngine;
-using TMPro;
+using TMPro; // Necesario para usar TextMeshPro
 
 public class CoinBehavior : MonoBehaviour
 {
-    public TMP_Text valorText; // Campo de texto para mostrar el valor
+    public TextMeshPro valorText; // Referencia al texto que muestra el valor
     public float valorActual = 1f; // Valor inicial de la moneda
 
     private void Start()
     {
-        // Inicializar el valor visual
-        ActualizarValor(valorActual);
+        ActualizarValor(valorActual); // Inicializa el texto con el valor actual
     }
 
     public void ActualizarValor(float nuevoValor)
     {
-        valorActual = nuevoValor;
-        if (valorText != null)
-        {
-            valorText.text = valorActual.ToString("F2"); // Dos decimales para claridad
-        }
+        valorActual = nuevoValor; // Actualiza el valor interno
+        valorText.text = valorActual.ToString("F2"); // Actualiza el texto visible con dos decimales
     }
 }
