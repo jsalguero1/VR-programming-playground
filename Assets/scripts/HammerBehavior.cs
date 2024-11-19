@@ -26,16 +26,16 @@ public class HammerBehavior : MonoBehaviour
         // Comparamos las palabras seleccionadas y aplicamos la operación correspondiente
         switch (operacion.ToLower()) // Convertimos a minúsculas para evitar problemas de mayúsculas/minúsculas
         {
-            case "sumar":
+            case "Sumar":
                 nuevoValor = valorMoneda + valorOperacion;
                 break;
-            case "restar":
+            case "Restar":
                 nuevoValor = valorMoneda - valorOperacion;
                 break;
-            case "multiplicar":
+            case "Multiplicar":
                 nuevoValor = valorMoneda * valorOperacion;
                 break;
-            case "dividir":
+            case "Dividir":
                 if (valorOperacion != 0)
                     nuevoValor = valorMoneda / valorOperacion;
                 else

@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edba8c1578f764ef899aac305386f6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valorText: {fileID: 8018556029736784398}
+  Valor: {fileID: 8018556029736784398}
   valorActual: 0
 --- !u!65 &1952698628946980152
 BoxCollider:
