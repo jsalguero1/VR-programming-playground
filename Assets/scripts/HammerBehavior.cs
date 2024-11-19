@@ -4,49 +4,14 @@ public class HammerBehavior : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica si el objeto con el que colisionamos es una moneda
-        if (collision.gameObject.CompareTag("Coin")) // Asegúrate de que las monedas tienen el tag "Coin"
+        // Verifica si el objeto con el que colisionamos tiene el tag "Coin"
+        if (collision.gameObject.CompareTag("Coin"))
         {
-            CoinBehavior moneda = collision.gameObject.GetComponent<CoinBehavior>();
-            if (moneda != null)
-            {
-                AplicarOperacion(moneda);
-            }
+            Debug.Log("Colisión detectada con una moneda.");
         }
-    }
-
-    private void AplicarOperacion(CoinBehavior moneda)
-    {
-        float valorMoneda = moneda.valorActual; // Obtiene el valor actual de la moneda
-        float valorOperacion = MenuManager.Instance.valorOperacion; // Valor del menú
-        string operacion = MenuManager.Instance.operacionSeleccionada; // Operación del menú
-
-        float nuevoValor = valorMoneda; // Inicializamos con el valor actual de la moneda
-
-        // Comparamos las palabras seleccionadas y aplicamos la operación correspondiente
-        switch (operacion.ToLower()) // Convertimos a minúsculas para evitar problemas de mayúsculas/minúsculas
+        else
         {
-            case "Sumar":
-                nuevoValor = valorMoneda + valorOperacion;
-                break;
-            case "Restar":
-                nuevoValor = valorMoneda - valorOperacion;
-                break;
-            case "Multiplicar":
-                nuevoValor = valorMoneda * valorOperacion;
-                break;
-            case "Dividir":
-                if (valorOperacion != 0)
-                    nuevoValor = valorMoneda / valorOperacion;
-                else
-                    Debug.LogWarning("No se puede dividir entre cero.");
-                break;
-            default:
-                Debug.LogWarning($"Operación '{operacion}' no reconocida.");
-                break;
+            Debug.Log("Colisión con otro objeto: " + collision.gameObject.name);
         }
-
-        // Actualizamos el valor de la moneda
-        moneda.ActualizarValor(nuevoValor);
     }
 }
