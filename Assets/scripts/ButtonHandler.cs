@@ -18,7 +18,7 @@ public class ButtonHandler : MonoBehaviour
             string inputValue = inputField.text;
             if (GlobalValueManager.Instance != null)
             {
-                GlobalValueManager.Instance.UpdateValue(inputValue);
+                GlobalValueManager.Instance.UpdateInputFieldValue(inputValue);
                 Debug.Log($"Valor del InputField enviado al GlobalValueManager: {inputValue}");
             }
         }
@@ -29,7 +29,7 @@ public class ButtonHandler : MonoBehaviour
             string dropdownValue = dropdown.options[dropdown.value].text;
             if (GlobalValueManager.Instance != null)
             {
-                GlobalValueManager.Instance.UpdateValue(dropdownValue);
+                GlobalValueManager.Instance.UpdateDropdownValue(dropdownValue);
                 Debug.Log($"Valor del Dropdown enviado al GlobalValueManager: {dropdownValue}");
             }
         }

@@ -14,7 +14,7 @@ public class HammerBehavior : MonoBehaviour
                 // Obtenemos el valor actual del GlobalValueManager como string
                 if (GlobalValueManager.Instance != null)
                 {
-                    string valorGlobalStr = GlobalValueManager.Instance.GetCurrentValue();
+                    string valorGlobalStr = GlobalValueManager.Instance.GetInputFieldValue();
                     if (float.TryParse(valorGlobalStr, out float valorGlobal))
                     {
                         // Incrementamos el valor de la moneda usando el valor convertido

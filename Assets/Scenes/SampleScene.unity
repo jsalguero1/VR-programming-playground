@@ -3942,6 +3942,7 @@ GameObject:
   - component: {fileID: 978314768}
   - component: {fileID: 978314767}
   - component: {fileID: 978314766}
+  - component: {fileID: 978314769}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -4071,6 +4072,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978314764}
   m_CullTransparentMesh: 1
+--- !u!114 &978314769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978314764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d21857830a16944fbf42d95d0964560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 978314766}
 --- !u!1 &1002175601
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,6 +5084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 140450143}
+  dropdown: {fileID: 978314766}
 --- !u!1 &1261431262
 GameObject:
   m_ObjectHideFlags: 0
