@@ -4,21 +4,50 @@ public class HammerBehavior : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica si el objeto con el que colisionamos tiene el tag "Coin"
         if (collision.gameObject.CompareTag("Coin"))
         {
-            Debug.Log("Colisión detectada con una moneda.");
-
-            // Obtenemos el script CoinBehavior de la moneda
             CoinBehavior moneda = collision.gameObject.GetComponent<CoinBehavior>();
             if (moneda != null)
             {
-                // Aumentamos el valor de la moneda en 1
-                float nuevoValor = moneda.valorActual + 1;
-                moneda.ActualizarValor(nuevoValor);
-
-                Debug.Log($"Nuevo valor de la moneda: {nuevoValor}");
+                AplicarOperacion(moneda);
             }
         }
+    }
+
+    private void AplicarOperacion(CoinBehavior moneda)
+    {
+        float valorMoneda = moneda.valorActual;
+        float valorOperacion = MenuManager.Instance.valorOperacion;
+        string operacion = MenuManager.Instance.operacionSeleccionada;
+
+        float nuevoValor = valorMoneda;
+
+        switch (operacion.ToLower())
+        {
+            case "sumar":
+                nuevoValor = valorMoneda + valorOperacion;
+                break;
+            case "restar":
+                nuevoValor = valorMoneda - valorOperacion;
+                break;
+            case "multiplicar":
+                nuevoValor = valorMoneda * valorOperacion;
+                break;
+            case "dividir":
+                if (valorOperacion != 0)
+                {
+                    nuevoValor = valorMoneda / valorOperacion;
+                }
+                else
+                {
+                    Debug.LogWarning("No se puede dividir entre cero.");
+                }
+                break;
+            default:
+                Debug.LogWarning($"Operación no reconocida: {operacion}");
+                break;
+        }
+
+        moneda.ActualizarValor(nuevoValor);
     }
 }

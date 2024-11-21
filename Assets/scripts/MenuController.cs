@@ -1,44 +1,35 @@
 using UnityEngine;
-using TMPro; // Necesario para usar TMP_Dropdown y TMP_InputField
+using TMPro;
 
 public class MenuController : MonoBehaviour
 {
-    // Referencia al Dropdown (para seleccionar la operación)
-    public TMP_Dropdown dropdownMenu;
-
-    // Referencia al InputField (para ingresar el valor)
-    public TMP_InputField inputField;
+    public TMP_Dropdown dropdownMenu; // Referencia al Dropdown
+    public TMP_InputField inputField; // Referencia al InputField
 
     private void Start()
     {
-        // Inicializa los valores desde el estado inicial del Dropdown y el InputField
+        // Configurar valores iniciales
         if (dropdownMenu != null)
         {
-            int index = dropdownMenu.value; // Obtiene la opción inicial seleccionada
-            OnDropdownChanged(index); // Actualiza el MenuManager
+            OnDropdownChanged(dropdownMenu.value);
         }
 
         if (inputField != null)
         {
-            string valor = inputField.text; // Obtiene el valor inicial del InputField
-            OnInputChanged(valor); // Actualiza el MenuManager
+            OnInputChanged(inputField.text);
         }
     }
 
-    // Método llamado cuando se cambia la opción del Dropdown
     public void OnDropdownChanged(int index)
     {
-        // Obtiene el texto de la opción seleccionada en el Dropdown
-        string operacionSeleccionada = dropdownMenu.options[index].text;
-
-        // Actualiza la operación en el MenuManager
-        MenuManager.Instance.SetOperacion(operacionSeleccionada);
+        // Obtiene el texto de la opción seleccionada y actualiza el MenuManager
+        string operacion = dropdownMenu.options[index].text;
+        MenuManager.Instance.SetOperacion(operacion);
     }
 
-    // Método llamado cuando se cambia el texto en el InputField
     public void OnInputChanged(string valor)
     {
-        // Actualiza el valor numérico en el MenuManager
+        // Actualiza el valor en el MenuManager
         MenuManager.Instance.SetValorOperacion(valor);
     }
 }
