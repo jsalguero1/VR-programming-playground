@@ -11,12 +11,19 @@ public class HammerBehavior : MonoBehaviour
             CoinBehavior moneda = collision.gameObject.GetComponent<CoinBehavior>();
             if (moneda != null)
             {
-                // Obtenemos el valor actual del GlobalValueManager
+                // Obtenemos el valor actual del GlobalValueManager como string
                 if (GlobalValueManager.Instance != null)
                 {
-                    float valorGlobal = GlobalValueManager.Instance.GetCurrentValue();
-                    // Incrementamos el valor de la moneda usando el valor del GlobalValueManager
-                    moneda.ActualizarValor(moneda.valorActual + valorGlobal);
+                    string valorGlobalStr = GlobalValueManager.Instance.GetCurrentValue();
+                    if (float.TryParse(valorGlobalStr, out float valorGlobal))
+                    {
+                        // Incrementamos el valor de la moneda usando el valor convertido
+                        moneda.ActualizarValor(moneda.valorActual + valorGlobal);
+                    }
+                    else
+                    {
+                        Debug.LogError($"El valor global '{valorGlobalStr}' no se pudo convertir a float.");
+                    }
                 }
                 else
                 {

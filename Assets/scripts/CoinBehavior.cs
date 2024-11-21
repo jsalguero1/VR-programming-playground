@@ -24,7 +24,7 @@ private void Start()
         valorActual = nuevoValor; // Actualizamos el valor interno
         if (Valor != null)
         {
-            Valor.text = valorActual.ToString("F0"); // Mostramos el nuevo valor como entero
+            Valor.text = valorActual.ToString("F2"); // Mostramos el nuevo valor como entero
             Debug.Log($"Valor de la moneda actualizado a: {valorActual}");
         }
         else

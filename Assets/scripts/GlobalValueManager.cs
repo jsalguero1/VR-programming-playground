@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class GlobalValueManager : MonoBehaviour
 {
+    // Singleton Instance
     public static GlobalValueManager Instance;
 
-    private float currentValue = 1f; // Valor inicial global
+    // Variable para almacenar el valor actual
+    private string currentValue;
 
     private void Awake()
     {
+        // Implementar Singleton
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Asegura que este objeto persista entre escenas
+            DontDestroyOnLoad(gameObject); // Asegura que no se destruya al cambiar de escena
         }
         else
         {
@@ -19,16 +22,15 @@ public class GlobalValueManager : MonoBehaviour
         }
     }
 
-    // Método para obtener el valor actual
-    public float GetCurrentValue()
+    public string GetCurrentValue()
     {
         return currentValue;
     }
 
-    // Método para actualizar el valor global
-    public void UpdateValue(float newValue)
+    // Método para actualizar el valor y mostrarlo
+    public void UpdateValue(string newValue)
     {
         currentValue = newValue;
-        Debug.Log($"El valor global se ha actualizado a: {currentValue}");
+        Debug.Log($"El valor actual es: {currentValue}");
     }
 }
