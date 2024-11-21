@@ -28,8 +28,9 @@ public class MenuController : MonoBehaviour
     }
 
     public void OnInputChanged(string valor)
-    {
-        // Actualiza el valor en el MenuManager
-        MenuManager.Instance.SetValorOperacion(valor);
-    }
+{
+    // Actualiza el valor en el MenuManager
+    MenuManager.Instance.SetValorOperacion(valor);
+    Debug.Log($"Valor ingresado: {valor}");
+}
 }
