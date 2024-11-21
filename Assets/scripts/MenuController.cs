@@ -11,11 +11,13 @@ public class MenuController : MonoBehaviour
         // Configurar valores iniciales
         if (dropdownMenu != null)
         {
+            Debug.Log($"Dropdown inicial: {dropdownMenu.options[dropdownMenu.value].text}");
             OnDropdownChanged(dropdownMenu.value);
         }
 
         if (inputField != null)
         {
+            Debug.Log($"InputField inicial: {inputField.text}");
             OnInputChanged(inputField.text);
         }
     }
@@ -25,11 +27,13 @@ public class MenuController : MonoBehaviour
         // Obtiene el texto de la opción seleccionada y actualiza el MenuManager
         string operacion = dropdownMenu.options[index].text;
         MenuManager.Instance.SetOperacion(operacion);
+        Debug.Log($"Dropdown cambiado: {operacion}");
     }
 
     public void OnInputChanged(string valor)
     {
         // Actualiza el valor en el MenuManager
         MenuManager.Instance.SetValorOperacion(valor);
+        Debug.Log($"InputField cambiado: {valor}");
     }
 }
