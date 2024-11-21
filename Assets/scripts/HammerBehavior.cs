@@ -11,18 +11,52 @@ public class HammerBehavior : MonoBehaviour
             CoinBehavior moneda = collision.gameObject.GetComponent<CoinBehavior>();
             if (moneda != null)
             {
-                // Obtenemos el valor actual del GlobalValueManager como string
+                // Obtenemos el valor actual del InputField desde el GlobalValueManager
                 if (GlobalValueManager.Instance != null)
                 {
-                    string valorGlobalStr = GlobalValueManager.Instance.GetInputFieldValue();
-                    if (float.TryParse(valorGlobalStr, out float valorGlobal))
+                    string inputFieldStr = GlobalValueManager.Instance.GetInputFieldValue();
+                    if (float.TryParse(inputFieldStr, out float valorGlobal))
                     {
-                        // Incrementamos el valor de la moneda usando el valor convertido
-                        moneda.ActualizarValor(moneda.valorActual + valorGlobal);
+                        string operation = GlobalValueManager.Instance.GetDropdownValue();
+
+                        // Realizar la operación correspondiente
+                        switch (operation)
+                        {
+                            case "Sumar":
+                                moneda.ActualizarValor(moneda.valorActual + valorGlobal);
+                                Debug.Log($"Sumando {valorGlobal} a la moneda.");
+                                break;
+
+                            case "Restar":
+                                moneda.ActualizarValor(moneda.valorActual - valorGlobal);
+                                Debug.Log($"Restando {valorGlobal} de la moneda.");
+                                break;
+
+                            case "Dividir":
+                                if (valorGlobal != 0)
+                                {
+                                    moneda.ActualizarValor(moneda.valorActual / valorGlobal);
+                                    Debug.Log($"Dividiendo la moneda por {valorGlobal}.");
+                                }
+                                else
+                                {
+                                    Debug.LogError("No se puede dividir por 0.");
+                                }
+                                break;
+
+                            case "Multiplicar":
+                                moneda.ActualizarValor(moneda.valorActual * valorGlobal);
+                                Debug.Log($"Multiplicando la moneda por {valorGlobal}.");
+                                break;
+
+                            default:
+                                Debug.LogError($"Operación no reconocida: {operation}");
+                                break;
+                        }
                     }
                     else
                     {
-                        Debug.LogError($"El valor global '{valorGlobalStr}' no se pudo convertir a float.");
+                        Debug.LogError($"El valor del InputField '{inputFieldStr}' no se pudo convertir a float.");
                     }
                 }
                 else
