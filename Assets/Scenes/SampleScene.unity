@@ -728,19 +728,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 294925747}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: OnInputChanged
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1162,7 +1150,6 @@ GameObject:
   - component: {fileID: 294925744}
   - component: {fileID: 294925743}
   - component: {fileID: 294925746}
-  - component: {fileID: 294925747}
   m_Layer: 0
   m_Name: HammerMenu
   m_TagString: Untagged
@@ -1214,7 +1201,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 32767
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &294925745
 RectTransform:
@@ -1230,8 +1217,8 @@ RectTransform:
   m_Children:
   - {fileID: 55898510}
   - {fileID: 2055221866}
-  - {fileID: 978314765}
   - {fileID: 140450142}
+  - {fileID: 978314765}
   - {fileID: 1175321393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1259,20 +1246,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &294925747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294925741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28dd5a3735934444aadd638acba98c74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropdownMenu: {fileID: 978314766}
-  inputField: {fileID: 140450143}
 --- !u!1 &361891363
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,19 +4031,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 294925747}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: OnDropdownChanged
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &978314767
 MonoBehaviour:
@@ -4974,6 +4935,7 @@ GameObject:
   - component: {fileID: 1175321396}
   - component: {fileID: 1175321395}
   - component: {fileID: 1175321394}
+  - component: {fileID: 1175321397}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -5044,7 +5006,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1175321395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1175321397}
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
+        m_MethodName: OnButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1175321395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,6 +5057,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175321392}
   m_CullTransparentMesh: 1
+--- !u!114 &1175321397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175321392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537b92b18ec7958499d482dfa26cba17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 140450143}
 --- !u!1 &1261431262
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,6 +6239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1611222705}
+  - component: {fileID: 1611222706}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -6274,6 +6262,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611222706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611222704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd471856001d1e4383f588bd3240568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1620003463
 GameObject:
   m_ObjectHideFlags: 0
