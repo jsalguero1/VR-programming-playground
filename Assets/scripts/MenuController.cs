@@ -24,15 +24,15 @@ public class MenuController : MonoBehaviour
 
 public void OnDropdownChanged(int index)
 {
-    if (dropdownMenu != null && index >= 0 && index < dropdownMenu.options.Count)
+    if (dropdownMenu != null)
     {
         string operacion = dropdownMenu.options[index].text;
-        Debug.Log($"Dropdown seleccionado: {operacion}");
+        Debug.Log($"OnDropdownChanged llamado. Operación seleccionada: {operacion}");
         MenuManager.Instance.SetOperacion(operacion);
     }
     else
     {
-        Debug.LogWarning("Dropdown index fuera de rango o dropdown no configurado.");
+        Debug.LogError("Dropdown no está configurado.");
     }
 }
 
@@ -40,12 +40,12 @@ public void OnInputChanged(string valor)
 {
     if (!string.IsNullOrEmpty(valor))
     {
-        Debug.Log($"Valor ingresado en InputField: {valor}");
+        Debug.Log($"OnInputChanged llamado. Valor ingresado: {valor}");
         MenuManager.Instance.SetValorOperacion(valor);
     }
     else
     {
-        Debug.LogWarning("El InputField está vacío o no tiene un valor válido.");
+        Debug.LogWarning("El InputField está vacío.");
     }
 }
 }
