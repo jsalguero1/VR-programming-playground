@@ -4,50 +4,22 @@ public class HammerBehavior : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        // Verifica si el objeto con el que colisionamos tiene el tag "Coin"
         if (collision.gameObject.CompareTag("Coin"))
         {
+            Debug.Log("Colisión detectada con una moneda.");
+
+            // Obtenemos el script CoinBehavior de la moneda
             CoinBehavior moneda = collision.gameObject.GetComponent<CoinBehavior>();
             if (moneda != null)
             {
-                AplicarOperacion(moneda);
+                float nuevoValor = moneda.valorActual + 1; // Incrementamos el valor en 1
+                moneda.ActualizarValor(nuevoValor); // Actualizamos el valor en la moneda
+            }
+            else
+            {
+                Debug.LogError("No se encontró el componente CoinBehavior en la moneda.");
             }
         }
-    }
-
-    private void AplicarOperacion(CoinBehavior moneda)
-    {
-        float valorMoneda = moneda.valorActual;
-        float valorOperacion = MenuManager.Instance.valorOperacion;
-        string operacion = MenuManager.Instance.operacionSeleccionada;
-
-        float nuevoValor = valorMoneda;
-
-        switch (operacion.ToLower())
-        {
-            case "sumar":
-                nuevoValor = valorMoneda + valorOperacion;
-                break;
-            case "restar":
-                nuevoValor = valorMoneda - valorOperacion;
-                break;
-            case "multiplicar":
-                nuevoValor = valorMoneda * valorOperacion;
-                break;
-            case "dividir":
-                if (valorOperacion != 0)
-                {
-                    nuevoValor = valorMoneda / valorOperacion;
-                }
-                else
-                {
-                    Debug.LogWarning("No se puede dividir entre cero.");
-                }
-                break;
-            default:
-                Debug.LogWarning($"Operación no reconocida: {operacion}");
-                break;
-        }
-
-        moneda.ActualizarValor(nuevoValor);
     }
 }
