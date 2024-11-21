@@ -12,6 +12,7 @@ public class VirtualKeyboard : MonoBehaviour
         if (targetInputField != null)
         {
             targetInputField.text += number;
+            targetInputField.ForceLabelUpdate(); // Forzar la actualización del valor interno
         }
     }
 
@@ -21,6 +22,7 @@ public class VirtualKeyboard : MonoBehaviour
         if (targetInputField != null && targetInputField.text.Length > 0)
         {
             targetInputField.text = targetInputField.text.Substring(0, targetInputField.text.Length - 1);
+            targetInputField.ForceLabelUpdate(); // Forzar la actualización del valor interno
         }
     }
 }
