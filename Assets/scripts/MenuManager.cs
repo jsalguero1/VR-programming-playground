@@ -19,22 +19,21 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-public void SetOperacion(string operacion)
-{
-    operacionSeleccionada = operacion;
-    Debug.Log($"Operación seleccionada: {operacionSeleccionada}");
-}
 
-public void SetValorOperacion(string valor)
-{
-    if (float.TryParse(valor, out float resultado))
+    public void SetOperacion(string operacion)
     {
-        valorOperacion = resultado;
-        Debug.Log($"Valor de la operación: {valorOperacion}");
+        operacionSeleccionada = operacion; // Actualiza la operación seleccionada
     }
-    else
+
+    public void SetValorOperacion(string valor)
     {
-        Debug.LogWarning("El valor ingresado no es válido.");
+        if (float.TryParse(valor, out float resultado))
+        {
+            valorOperacion = resultado; // Convierte el texto en un número
+        }
+        else
+        {
+            Debug.LogWarning("El valor ingresado no es válido.");
+        }
     }
-}
 }
