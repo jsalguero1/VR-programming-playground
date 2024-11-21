@@ -5,8 +5,9 @@ public class GlobalValueManager : MonoBehaviour
     // Singleton Instance
     public static GlobalValueManager Instance;
 
-    // Variable para almacenar el valor actual
-    private string currentValue;
+    // Variables para almacenar los valores actuales
+    private string inputFieldValue;
+    private string dropdownValue;
 
     private void Awake()
     {
@@ -22,15 +23,27 @@ public class GlobalValueManager : MonoBehaviour
         }
     }
 
-    public string GetCurrentValue()
+    // Métodos para obtener valores individuales
+    public string GetInputFieldValue()
     {
-        return currentValue;
+        return inputFieldValue;
     }
 
-    // Método para actualizar el valor y mostrarlo
-    public void UpdateValue(string newValue)
+    public string GetDropdownValue()
     {
-        currentValue = newValue;
-        Debug.Log($"El valor actual es: {currentValue}");
+        return dropdownValue;
+    }
+
+    // Métodos para actualizar valores individuales
+    public void UpdateInputFieldValue(string newValue)
+    {
+        inputFieldValue = newValue;
+        Debug.Log($"El valor del InputField se actualizó a: {inputFieldValue}");
+    }
+
+    public void UpdateDropdownValue(string newValue)
+    {
+        dropdownValue = newValue;
+        Debug.Log($"El valor del Dropdown se actualizó a: {dropdownValue}");
     }
 }
