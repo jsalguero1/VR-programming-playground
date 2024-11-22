@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ButtonHandler : MonoBehaviour
+public class HammerButtonHandler : MonoBehaviour
 {
     // Referencia al campo de texto (InputField)
     public TMP_InputField inputField;

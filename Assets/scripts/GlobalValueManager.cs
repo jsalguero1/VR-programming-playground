@@ -8,6 +8,7 @@ public class GlobalValueManager : MonoBehaviour
     // Variables para almacenar los valores actuales
     private string inputFieldValue;
     private string dropdownValue;
+    private string inputFieldCharValue;
 
     private void Awake()
     {
@@ -34,6 +35,11 @@ public class GlobalValueManager : MonoBehaviour
         return dropdownValue;
     }
 
+    public string GetInputFieldCharValue()
+    {
+        return inputFieldCharValue;
+    }
+
     // Métodos para actualizar valores individuales
     public void UpdateInputFieldValue(string newValue)
     {
@@ -45,5 +51,11 @@ public class GlobalValueManager : MonoBehaviour
     {
         dropdownValue = newValue;
         Debug.Log($"El valor del Dropdown se actualizó a: {dropdownValue}");
+    }
+
+    public void UpdateInputFieldCharValue(string newValue)
+    {
+        inputFieldCharValue = newValue;
+        Debug.Log($"El valor del InputField de un solo carácter se actualizó a: {inputFieldCharValue}");
     }
 }
