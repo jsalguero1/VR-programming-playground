@@ -10,7 +10,8 @@ public class SideSnapper : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.GetComponent<Rigidbody>() != null)
+        // Verifica si el objeto tiene el tag "Char"
+        if (col.gameObject.CompareTag("Char") && col.gameObject.GetComponent<Rigidbody>() != null)
         {
             // Encuentra el lado más cercano para hacer el snapping
             Vector3 closestPoint = FindClosestSide(col);
@@ -28,7 +29,13 @@ public class SideSnapper : MonoBehaviour
                 joint.breakForce = breakForce;
                 joint.breakTorque = breakTorque;
                 joint.enableCollision = false; // Evita colisiones repetidas
+
+                Debug.Log($"HingeJoint creado entre {gameObject.name} y {col.gameObject.name}");
             }
+        }
+        else
+        {
+            Debug.Log($"{col.gameObject.name} no tiene el tag 'Char' o no tiene Rigidbody.");
         }
     }
 

@@ -8,43 +8,58 @@ public class TrackSnapper : MonoBehaviour
     public float breakForce = 50f;   // Fuerza máxima antes de romper el Joint
     public float breakTorque = 50f;
 
-    public Transform anchorTab; // Punto de anclaje de la pestaña
-    public Transform anchorSlot; // Punto de anclaje de la ranura
-
     private void OnTriggerEnter(Collider col)
     {
-        TrackSnapper otherSnapper = col.gameObject.GetComponent<TrackSnapper>();
-
-        if (otherSnapper != null)
+        if (col.gameObject.GetComponent<Rigidbody>() != null)
         {
-            // Verifica si la pestaña está cerca de la ranura del otro objeto
-            if (Vector3.Distance(anchorTab.position, otherSnapper.anchorSlot.position) <= snapDistance)
+            // Encuentra el punto más cercano en el lado más pequeño del colisionador
+            Vector3 closestPoint = FindClosestSmallSide(col);
+
+            if (Vector3.Distance(closestPoint, transform.position) <= snapDistance)
             {
-                CreateJoint(col, otherSnapper.anchorSlot.position, anchorTab.position);
-            }
-            else if (Vector3.Distance(anchorSlot.position, otherSnapper.anchorTab.position) <= snapDistance)
-            {
-                CreateJoint(col, otherSnapper.anchorTab.position, anchorSlot.position);
+                // Crea un HingeJoint para conectar los objetos
+                HingeJoint joint = gameObject.AddComponent<HingeJoint>();
+                joint.connectedBody = col.GetComponent<Rigidbody>();
+
+                // Define el punto de anclaje (ajusta la posición al lado más cercano)
+                joint.anchor = transform.InverseTransformPoint(closestPoint);
+
+                // Define las propiedades del Joint
+                joint.breakForce = breakForce;
+                joint.breakTorque = breakTorque;
+                joint.enableCollision = false; // Evita colisiones repetidas
+
+                Debug.Log("HingeJoint creado.");
             }
         }
     }
 
-    private void CreateJoint(Collider col, Vector3 targetPosition, Vector3 anchorPosition)
+    private Vector3 FindClosestSmallSide(Collider col)
     {
-        // Crea un HingeJoint para conectar los objetos
-        HingeJoint joint = gameObject.AddComponent<HingeJoint>();
-        joint.connectedBody = col.GetComponent<Rigidbody>();
+        Vector3 closestPoint = Vector3.zero;
+        float closestDistance = float.MaxValue;
 
-        // Ajusta la posición del anclaje al punto objetivo
-        joint.anchor = transform.InverseTransformPoint(anchorPosition);
+        Bounds bounds = col.bounds;
 
-        // Ajusta la posición del Joint al punto objetivo
-        joint.connectedAnchor = col.transform.InverseTransformPoint(targetPosition);
+        // Calcula los lados más pequeños del BoxCollider
+        Vector3[] smallSides = {
+            bounds.min, // Esquina inferior izquierda
+            new Vector3(bounds.min.x, bounds.min.y, bounds.max.z), // Esquina inferior derecha
+            new Vector3(bounds.max.x, bounds.min.y, bounds.min.z), // Esquina superior izquierda
+            new Vector3(bounds.max.x, bounds.min.y, bounds.max.z)  // Esquina superior derecha
+        };
 
-        // Configura las propiedades del Joint
-        joint.breakForce = breakForce;
-        joint.breakTorque = breakTorque;
-        joint.enableCollision = false; // Evita colisiones repetidas
+        // Encuentra el punto más cercano
+        foreach (Vector3 side in smallSides)
+        {
+            float distance = Vector3.Distance(transform.position, side);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestPoint = side;
+            }
+        }
+
+        return closestPoint;
     }
 }
-
