@@ -6377,7 +6377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dd1bbfc17d6174a85be81abaf26f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackAsset: {fileID: 7257810204985392342, guid: cc65cd7025a129f469f5b0c1b2d1d1fb,
+  trackAsset: {fileID: 202658042939773410, guid: a5574ee5faec4c142afa5c72b052a921,
     type: 3}
   spawnPoint: {fileID: 725861492}
 --- !u!4 &725861492
