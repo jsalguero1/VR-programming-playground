@@ -3,8 +3,10 @@ using UnityEngine;
 public class ObjectMover : MonoBehaviour
 {
     private Transform endPoint; // Punto final hacia donde moverse
+    private Collider endPointCollider; // Referencia al Collider del EndPoint
     private bool isMoving = false; // Controla el estado del movimiento
     public float speed = 1.0f; // Velocidad del movimiento
+    public float deactivateTime = 2.0f; // Tiempo que el Collider estará desactivado
 
     void Update()
     {
@@ -18,6 +20,7 @@ public class ObjectMover : MonoBehaviour
             {
                 isMoving = false;
                 Debug.Log($"{name} ha llegado al EndPoint.");
+                StartCoroutine(DeactivateEndPointColliderTemporarily());
             }
         }
     }
@@ -30,7 +33,20 @@ public class ObjectMover : MonoBehaviour
         {
             Debug.Log($"{name} detectó el StartPoint de {trackController.name}");
             endPoint = trackController.GetEndPoint();
+            endPointCollider = endPoint.GetComponent<Collider>(); // Obtener el Collider del EndPoint
             isMoving = true;
+        }
+    }
+
+    private System.Collections.IEnumerator DeactivateEndPointColliderTemporarily()
+    {
+        if (endPointCollider != null)
+        {
+            Debug.Log($"Desactivando el Collider del EndPoint: {endPoint.name}");
+            endPointCollider.enabled = false; // Desactiva el Collider
+            yield return new WaitForSeconds(deactivateTime); // Espera el tiempo especificado
+            endPointCollider.enabled = true; // Reactiva el Collider
+            Debug.Log($"Collider del EndPoint {endPoint.name} reactivado.");
         }
     }
 }
