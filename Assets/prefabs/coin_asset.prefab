@@ -246,6 +246,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -294,6 +309,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
         type: 3}
       propertyPath: m_Name
@@ -332,6 +352,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1952698628946980152}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ab77216694d2eaf4e945d8b9c1fe95a4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2751024406407245032}
   m_SourcePrefab: {fileID: 100100000, guid: ab77216694d2eaf4e945d8b9c1fe95a4, type: 3}
 --- !u!4 &235094699469339566 stripped
 Transform:
@@ -605,3 +629,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.20000005, z: 0.020000001}
   m_Center: {x: 0, y: 0, z: 0.10014846}
+--- !u!114 &2751024406407245032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578969625920938260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c20060bdf674104989239bc4265590d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackController: {fileID: 7257810204985392342, guid: cc65cd7025a129f469f5b0c1b2d1d1fb,
+    type: 3}
+  startPointName: StartPoint
+  endPointName: EndPoint
+  speed: 1
