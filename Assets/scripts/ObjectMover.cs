@@ -5,7 +5,7 @@ public class ObjectMover : MonoBehaviour
     private Transform endPoint; // Punto final hacia donde moverse
     private Collider endPointCollider; // Referencia al Collider del EndPoint
     private bool isMoving = false; // Controla el estado del movimiento
-    public float speed = 1.0f; // Velocidad del movimiento
+    public float speed = 0.5f; // Velocidad del movimiento
     public float deactivateTime = 2.0f; // Tiempo que el Collider estará desactivado
 
     void Update()
