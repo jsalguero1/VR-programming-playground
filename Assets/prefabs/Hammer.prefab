@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c1c7527b326c34abc81d03926c942703,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8bd22d63cbd4e38409b69cac2ad76c50, type: 2}
     - target: {fileID: 919132149155446097, guid: c1c7527b326c34abc81d03926c942703,
         type: 3}
       propertyPath: m_Name
@@ -104,6 +109,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3001397845702178380}
   m_SourcePrefab: {fileID: 100100000, guid: c1c7527b326c34abc81d03926c942703, type: 3}
+--- !u!23 &3451496806889637340 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c1c7527b326c34abc81d03926c942703,
+    type: 3}
+  m_PrefabInstance: {fileID: 4046409149648460120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3811965578200146953 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c1c7527b326c34abc81d03926c942703,
@@ -122,6 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6c894cd2d154cb6b91ad9d78c9ee0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerRenderer: {fileID: 3451496806889637340}
+  sumarColor: {r: 0.12413902, g: 0.6037736, b: 0.06550375, a: 0}
+  restarColor: {r: 0.7735849, g: 0.18609823, b: 0.18609823, a: 0}
+  dividirColor: {r: 0.8113208, g: 0.55082995, b: 0.11098258, a: 0}
+  multiplicarColor: {r: 0.3498802, g: 0.18382876, b: 0.764151, a: 0}
+  defaultColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
 --- !u!64 &9076807761540664091
 MeshCollider:
   m_ObjectHideFlags: 0
