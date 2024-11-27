@@ -1471,7 +1471,7 @@ PrefabInstance:
     - target: {fileID: 202658042939773410, guid: a5574ee5faec4c142afa5c72b052a921,
         type: 3}
       propertyPath: m_Name
-      value: Pista_recta_3
+      value: PistaRectaSample
       objectReference: {fileID: 0}
     - target: {fileID: 568496750672209342, guid: a5574ee5faec4c142afa5c72b052a921,
         type: 3}
@@ -15099,7 +15099,7 @@ PrefabInstance:
     - target: {fileID: 6200870825583600539, guid: c278a9bcd0f2e41b281af307fafe9cdd,
         type: 3}
       propertyPath: m_Name
-      value: Character
+      value: CharacterSample
       objectReference: {fileID: 0}
     - target: {fileID: 6721124936620849441, guid: c278a9bcd0f2e41b281af307fafe9cdd,
         type: 3}
@@ -17169,7 +17169,7 @@ PrefabInstance:
     - target: {fileID: 578969625920938260, guid: 3253d8e417f3bbc48a0dd3eeb54c5d85,
         type: 3}
       propertyPath: m_Name
-      value: coin_asset
+      value: coinSample
       objectReference: {fileID: 0}
     - target: {fileID: 1646282065081819228, guid: 3253d8e417f3bbc48a0dd3eeb54c5d85,
         type: 3}
@@ -18137,7 +18137,7 @@ PrefabInstance:
     - target: {fileID: 1971875824645702475, guid: 03d13999a1c474ef1a5fbdf0f54a71c6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.643
+      value: -2.628
       objectReference: {fileID: 0}
     - target: {fileID: 1971875824645702475, guid: 03d13999a1c474ef1a5fbdf0f54a71c6,
         type: 3}
