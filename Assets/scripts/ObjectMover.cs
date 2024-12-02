@@ -49,6 +49,21 @@ public class ObjectMover : MonoBehaviour
                     {
                         string coinValue = coinTMP.text;
                         Debug.Log($"Valor dinámico detectado en la moneda: {coinValue}");
+
+                        // Evaluar la condición lógica
+                        bool conditionMet = trackValues.EvaluateComparison(coinValue);
+                        Debug.Log($"Resultado de la comparación: {conditionMet}");
+
+                        // Cambiar el color de la pista basado en el resultado
+                        Renderer trackRenderer = trackController.GetComponent<Renderer>();
+                        if (trackRenderer != null)
+                        {
+                            trackRenderer.material.color = conditionMet ? Color.green : Color.red;
+                        }
+                        else
+                        {
+                            Debug.LogError("El TrackController no tiene un Renderer asignado.");
+                        }
                     }
                     else
                     {
