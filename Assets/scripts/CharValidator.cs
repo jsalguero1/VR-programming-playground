@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Valor : MonoBehaviour
+public class CharValidator : MonoBehaviour
 {
     private TrackValues trackValues;
 
@@ -13,7 +13,7 @@ public class Valor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Coin"))
+        if (other.CompareTag("Char"))
         {
             Transform canvasTransform = other.transform.Find("Canvas");
             if (canvasTransform != null)
@@ -22,11 +22,26 @@ public class Valor : MonoBehaviour
                 if (tmp != null)
                 {
                     string text = tmp.text;
-                    Debug.Log($"Texto encontrado en Coin: {text}");
-                    trackValues?.UpdateValorValue(text); // Informa al padre
+                    if (IsValidText(text))
+                    {
+                        Debug.Log($"Texto válido encontrado en Char: {text}");
+                        trackValues?.UpdateCharValue(text); // Informa al padre
+                    }
                 }
             }
         }
     }
-}
 
+    private bool IsValidText(string text)
+    {
+        char[] validSymbols = { '<', '>', '≤', '≥', '=' };
+        foreach (char c in text)
+        {
+            if (System.Array.IndexOf(validSymbols, c) == -1)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}

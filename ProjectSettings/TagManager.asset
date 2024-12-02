@@ -8,6 +8,8 @@ TagManager:
   - MagneticChar
   - Char
   - Track
+  - StartPoint
+  - TrackValues
   layers:
   - Default
   - TransparentFX
