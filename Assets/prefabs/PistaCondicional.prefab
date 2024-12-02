@@ -250,9 +250,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2269721013037756630}
   - component: {fileID: 98073086287194131}
-  - component: {fileID: 2866441722688664932}
+  - component: {fileID: 2839676546717877760}
   m_Layer: 0
-  m_Name: Comparar
+  m_Name: Valor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +294,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5882906, z: 0.55630195}
   m_Center: {x: 0, y: -0.20585486, z: 0.22184959}
---- !u!114 &2866441722688664932
+--- !u!114 &2839676546717877760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5572560742473198368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adda57cee5a0911438cc15b2b8144abb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ab26d019d55d2641b7a8b094bf3c8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7589748324366083075
