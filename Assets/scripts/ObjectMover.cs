@@ -28,14 +28,18 @@ public class ObjectMover : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Detectar si el objeto entra en contacto con un StartPoint
-        TrackController trackController = other.GetComponentInParent<TrackController>();
-        if (trackController != null)
+        if (other.CompareTag("StartPoint"))
+        {
+            TrackController trackController = other.GetComponentInParent<TrackController>();
+            if (trackController != null)
         {
             Debug.Log($"{name} detectó el StartPoint de {trackController.name}");
             endPoint = trackController.GetEndPoint();
             endPointCollider = endPoint.GetComponent<Collider>(); // Obtener el Collider del EndPoint
             isMoving = true;
         }
+        }
+
     }
 
     private System.Collections.IEnumerator DeactivateEndPointColliderTemporarily()

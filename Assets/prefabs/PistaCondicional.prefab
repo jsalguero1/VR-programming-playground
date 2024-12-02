@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5400379312809920858}
   m_Layer: 0
   m_Name: StartPoint
-  m_TagString: Untagged
+  m_TagString: StartPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,6 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2269721013037756630}
   - component: {fileID: 98073086287194131}
+  - component: {fileID: 2866441722688664932}
   m_Layer: 0
   m_Name: Comparar
   m_TagString: Untagged
@@ -266,7 +267,7 @@ Transform:
   m_GameObject: {fileID: 5572560742473198368}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009, y: -0.1423, z: -0.0125}
+  m_LocalPosition: {x: 0.0004, y: -0.1423, z: -0.0125}
   m_LocalScale: {x: 0.03, y: 0.029999996, z: 0.029999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -293,6 +294,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5882906, z: 0.55630195}
   m_Center: {x: 0, y: -0.20585486, z: 0.22184959}
+--- !u!114 &2866441722688664932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572560742473198368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adda57cee5a0911438cc15b2b8144abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7589748324366083075
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +702,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71ac81a3784da43feabb6def5f4f320c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6533509874636619766}
+      addedObject: {fileID: 408211897095609738}
   m_SourcePrefab: {fileID: 100100000, guid: 71ac81a3784da43feabb6def5f4f320c, type: 3}
 --- !u!1 &498123211823045195 stripped
 GameObject:
@@ -912,7 +925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 5716027523609381159}
   endPoint: {fileID: 2817139259233787162}
---- !u!114 &6533509874636619766
+--- !u!114 &408211897095609738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -921,16 +934,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 498123211823045195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e89140ccff8942e8b82ddeade99c2e0, type: 3}
+  m_Script: {fileID: 11500000, guid: adda57cee5a0911438cc15b2b8144abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comparar: {fileID: 5572560742473198368}
-  condicional: {fileID: 7589748324366083075}
-  successMaterial: {fileID: 7770318624900243041, guid: 44f3430c585c6514985b591c28e05a78,
-    type: 3}
-  failureMaterial: {fileID: -6478536213147159724, guid: c1c7527b326c34abc81d03926c942703,
-    type: 3}
-  trackRenderer: {fileID: 0}
 --- !u!4 &982454049115111665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71ac81a3784da43feabb6def5f4f320c,
