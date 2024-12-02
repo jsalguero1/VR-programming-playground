@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c20060bdf674104989239bc4265590d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trueColor: {r: 1, g: 1, b: 1, a: 1}
+  falseColor: {r: 0.9528302, g: 0.39606795, b: 0.24719654, a: 1}
   speed: 1
-  deactivateTime: 1
-  trackValues: {fileID: 5219726635573183167, guid: 4948fad741fbe462aba393185d6ab26f,
-    type: 3}
+  deactivateTime: 1.91
