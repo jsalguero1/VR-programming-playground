@@ -43,12 +43,33 @@ public class ObjectMover : MonoBehaviour
                 TrackValues trackValues = trackController.GetComponent<TrackValues>();
                 if (trackValues != null)
                 {
+                    // Validar si los valores están configurados
+                    (string valorValue, string charValue) = trackValues.GetRegisteredValues();
+                    if (string.IsNullOrEmpty(valorValue) || string.IsNullOrEmpty(charValue))
+                    {
+                        Debug.LogWarning($"Valores incompletos en la pista condicional {trackController.name}. Comparación omitida.");
+                        return;
+                    }
+
+                    // Validar que el operador lógico sea válido
+                    if (!IsValidOperator(charValue))
+                    {
+                        Debug.LogError($"Operador lógico inválido en la pista condicional: {charValue}. Comparación omitida.");
+                        return;
+                    }
+
                     // Obtener el valor dinámico del TMP en la moneda
                     TMP_Text coinTMP = GetComponentInChildren<TMP_Text>();
                     if (coinTMP != null)
                     {
                         string coinValue = coinTMP.text;
-                        Debug.Log($"Valor dinámico detectado en la moneda: {coinValue}");
+
+                        // Validar que el valor de la moneda sea un número
+                        if (!float.TryParse(coinValue, out _))
+                        {
+                            Debug.LogError($"El valor de la moneda '{coinValue}' no es un número válido. Comparación omitida.");
+                            return;
+                        }
 
                         // Evaluar la condición lógica
                         bool conditionMet = trackValues.EvaluateComparison(coinValue);
@@ -84,5 +105,12 @@ public class ObjectMover : MonoBehaviour
             endPointCollider.enabled = true; // Reactiva el Collider
             Debug.Log($"Collider del EndPoint {endPoint.name} reactivado.");
         }
+    }
+
+    // Método para validar el operador lógico
+    private bool IsValidOperator(string op)
+    {
+        string[] validOperators = { "<", ">", "≤", "≥", "=" };
+        return System.Array.Exists(validOperators, validOp => validOp == op);
     }
 }
