@@ -6,8 +6,8 @@ public class GlobalValueManager : MonoBehaviour
     public static GlobalValueManager Instance;
 
     // Variables para almacenar los valores actuales
-    private string inputFieldValue;
-    private string dropdownValue;
+    private string inputFieldValue = "1"; // Valor inicial por defecto
+    private string dropdownValue = "Sumar"; // Operación inicial por defecto
     private string inputFieldCharValue;
 
     private void Awake()
