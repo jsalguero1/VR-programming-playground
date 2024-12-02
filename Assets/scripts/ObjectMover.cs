@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class ObjectMover : MonoBehaviour
 {
@@ -32,14 +33,30 @@ public class ObjectMover : MonoBehaviour
         {
             TrackController trackController = other.GetComponentInParent<TrackController>();
             if (trackController != null)
-        {
-            Debug.Log($"{name} detectó el StartPoint de {trackController.name}");
-            endPoint = trackController.GetEndPoint();
-            endPointCollider = endPoint.GetComponent<Collider>(); // Obtener el Collider del EndPoint
-            isMoving = true;
-        }
-        }
+            {
+                Debug.Log($"{name} detectó el StartPoint de {trackController.name}");
+                endPoint = trackController.GetEndPoint();
+                endPointCollider = endPoint.GetComponent<Collider>(); // Obtener el Collider del EndPoint
+                isMoving = true;
 
+                // Verificar si la pista es condicional
+                TrackValues trackValues = trackController.GetComponent<TrackValues>();
+                if (trackValues != null)
+                {
+                    // Obtener el valor dinámico del TMP en la moneda
+                    TMP_Text coinTMP = GetComponentInChildren<TMP_Text>();
+                    if (coinTMP != null)
+                    {
+                        string coinValue = coinTMP.text;
+                        Debug.Log($"Valor dinámico detectado en la moneda: {coinValue}");
+                    }
+                    else
+                    {
+                        Debug.LogError("No se encontró un TMP_Text en la moneda.");
+                    }
+                }
+            }
+        }
     }
 
     private System.Collections.IEnumerator DeactivateEndPointColliderTemporarily()
