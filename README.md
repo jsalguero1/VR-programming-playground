@@ -35,6 +35,7 @@ En la carpeta de **Assets** se encuentra lo necesario para editar o configurar e
 ### Software
 - Unity 2021 o superior
 - XR Interaction Toolkit para interacción en VR
+- Dependencia TextMesh Pro
 - Oculus Integration Package para compatibilidad con Oculus Quest 2
 
 ### Hardware
